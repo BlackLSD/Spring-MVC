@@ -1,0 +1,73 @@
+public class Student {
+    private String nom;
+    private String prenom;
+    private String tuteur;
+    private String email;
+    private String password;
+    private String classe;
+
+    // Ajoutez les getters et setters appropriés
+}
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/etudiant")
+public class StudentController {
+
+    @GetMapping("/inscription")
+    public String showInscriptionForm(Model model) {
+        model.addAttribute("student", new Student());
+        return "inscription";
+    }
+
+    @PostMapping("/inscription")
+    public String processInscriptionForm(Student student) {
+        // Traitez les données d'inscription de l'étudiant ici
+        // Vous pouvez les enregistrer dans une base de données ou effectuer d'autres opérations
+        return "confirmation";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inscription Étudiant</title>
+</head>
+<body>
+    <h1>Inscription Étudiant</h1>
+    <form action="/etudiant/inscription" method="post">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom"><br><br>
+        
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom"><br><br>
+        
+        <label for="tuteur">Tuteur:</label>
+        <input type="text" id="tuteur" name="tuteur"><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" name="password"><br><br>
+        
+        <label for="classe">Classe:</label>
+        <input type="text" id="classe" name="classe"><br><br>
+        
+        <input type="submit" value="S'inscrire">
+    </form>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmation</title>
+</head>
+<body>
+    <h1>Inscription Confirmée</h1>
+    <p>Merci de vous être inscrit ! Votre inscription a été enregistrée avec succès.</p>
+</body>
+</html>
